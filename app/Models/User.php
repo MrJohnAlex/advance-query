@@ -18,9 +18,9 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function posts () : HasMany 
+    public function reservations () : HasMany 
     {
-        return $this->hasMany(Post::class, 'user_id', 'id');
+        return $this->hasMany(Reservation::class, 'user_id', 'id');
     }
 
     protected $hidden = [

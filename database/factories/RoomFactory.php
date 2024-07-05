@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Factories;
-
+    
+use App\Models\RoomType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => rtrim(ucfirst($this->faker->text(20)), '.'),
+            'description' => $this->faker->sentence(),
+            'hotel_id' => mt_rand(1, 100),
+            'created_at' => $this->faker->dateTimeBetween('-10 days', '-5 days'),
+            'updated_at' => $this->faker->dateTimeBetween('-3 days', '-1 hour'),
+            'room_type_id' => $this->faker->numberBetween(1,10)
         ];
     }
 }

@@ -17,9 +17,9 @@ class HotelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => ucfirst($this->faker->text(20)),
+            'name' => rtrim(ucfirst($this->faker->text(20)), '.'),
             'description' => $this->faker->sentence(10),
-            'city_id' => mt_rand(1,50)
+            'city_id' => mt_rand(1,32)
         ];
     }
 }

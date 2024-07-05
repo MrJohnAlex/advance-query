@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+use App\Models\Reservation;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,8 +15,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(User::class)->create(10)->each(function (User $user) {
-            $user->posts()->saveMany(factory(Post::class, mt_rand(2,6))->make());
-        });
+       // Create Users
+       $users = User::factory(10)->create();
+
+       // Create Rooms
+       $rooms = Room::factory(50)->create();
+
+       // Create Reservations and attach Rooms to Reservations
+       $users->each(function($user) use ($rooms) {
+           $reservations = Reservation::factory(mt_rand(1, 5))->create(['user_id' => $user->id]);
+           $reservations->each(function($reservation) use ($rooms) {
+               $reservation->rooms()->attach(
+                   $rooms->random(mt_rand(1, 5))->pluck('id')->toArray(),
+                   [
+                       'status' => (bool) random_int(0,1)
+                   ]
+               );
+           });
+       });
     }
 }

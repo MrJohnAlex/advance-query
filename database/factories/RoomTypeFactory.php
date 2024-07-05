@@ -17,7 +17,11 @@ class RoomTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'size' => $this->faker->numberBetween(1,5),
+            'price' => $this->faker->numberBetween(100,500),
+            'amount' => $this->faker->numberBetween(1,100),
+            'created_at' => $this->faker->dateTimeBetween('-9 days', '-4 days'),
+            'updated_at' => $this->faker->dateTimeBetween('-2 days', '-1 minute'),
         ];
     }
 }

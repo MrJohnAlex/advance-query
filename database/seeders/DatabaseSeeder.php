@@ -16,10 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountrySeeder::class,
             HotelSeeder::class,
-            // RoomTypeSeeder::class,
-            // UserSeeder::class,
-            // RoomSeeder::class,
-            // ReservationSeeder::class,
+            RoomTypeSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

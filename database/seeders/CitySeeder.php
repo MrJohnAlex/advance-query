@@ -12,8 +12,5 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        // Factory(Country::class, 50)->create()->each(function($country) {
-        //     $country->cities->saveMany();
-        // });
     }
 }
